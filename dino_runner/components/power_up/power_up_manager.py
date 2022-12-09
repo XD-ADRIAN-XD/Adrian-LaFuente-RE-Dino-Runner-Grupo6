@@ -1,7 +1,7 @@
 import random
 import pygame
 
-from dino_runner.components.power_up.shield import Shield
+from dino_runner.components.power_up.shield  import Shield
 
 class PowerUpManager:
 
@@ -27,17 +27,17 @@ class PowerUpManager:
 
     def update(self, points, game_speed, player):
         self.generate_power_ups(points)
-        for power_ups in self.power_ups:
-            power_ups.update(game_speed, self.power_ups)
-            if player.dino_rect.colliderect(power_ups.rect):
-                power_ups.start_time = pygame.time.get_ticks()
+        for power_up in self.power_ups:
+            power_up.update(game_speed, self.power_ups)
+            if player.dino_rect.colliderect(power_up.rect):
+                power_up.start_time = pygame.time.get_ticks()
                 player.shield = True
                 player.show_text = True
-                player.type = power_ups.type
-                power_ups.start_time = pygame.time.get_ticks()
+                player.type = power_up.type
+                power_up.start_time = pygame.time.get_ticks()
                 time_random = random.randrange(5, 8)
-                player.shield_time_up = power_ups.start_time + (time_random * 1000)
-                self.power_ups.remove(power_ups)
+                player.shield_time_up = power_up.start_time + (time_random * 1000)
+                self.power_ups.remove(power_up)
 
     def draw(self, screen):
         for power_ups in self.power_ups:

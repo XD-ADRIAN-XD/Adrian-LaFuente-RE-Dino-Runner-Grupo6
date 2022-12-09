@@ -5,6 +5,16 @@ class PlayerHeartManager:
 
     def __init__(self):
         self.heart_count = HEART_COUNT
+        self.time_heart = 0
+
+    def sum_heart(self):
+        
+        if self.heart_count == 1:
+            self.time_heart += 1
+
+        if self.heart_count == 1 and self.time_heart >= 1000:       
+           self.heart_count += 1
+           self.time_heart = self.time_heart * 0
 
     def reduce_heart(self):
         self.heart_count -= 1
